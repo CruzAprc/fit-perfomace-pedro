@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/logo.svg" type="image/svg+xml" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#437BFF" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#3B82F6" />
     <meta
       name="description"
-      content="Fit Performance - Seu app de fitness personalizado"
+      content="FitPerformance - Transformação fitness com anamnese personalizada e protocolos gamificados"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.svg" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FitPerformance">
+    <meta name="application-name" content="FitPerformance">
+    <meta name="msapplication-TileColor" content="#3B82F6">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="%PUBLIC_URL%/logo512.png" />
     
     <!-- Preload da logo para carregamento imediato -->
     <link rel="preload" href="%PUBLIC_URL%/logo.svg" as="image" type="image/svg+xml" />
@@ -19,11 +31,27 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Fit Performance - Fitness App</title>
+    <title>FitPerformance - Transformação Fitness</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registrado com sucesso: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('Falha no registro do SW: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

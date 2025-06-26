@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, Star, Target, Clock, Zap, Heart, Brain, Utensils, DollarSign, AlertCircle, CheckCircle2, Crown, Users } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Star, Target, Clock, Zap, Heart, Brain, Utensils, AlertCircle, CheckCircle2, Users } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
 
 interface Option {
@@ -231,7 +231,7 @@ const NutritionQuizGame = () => {
       setPickerValue(currentQ.defaultAge);
       setSelectedAnswer({ value: currentQ.defaultAge, points: 10 });
     }
-  }, [currentQuestion]);
+  }, [currentQuestion, questions]);
 
 
 

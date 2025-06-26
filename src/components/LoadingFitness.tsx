@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, Settings, TrendingUp, Wifi, CheckCircle, Zap, ChevronRight, Target } from 'lucide-react';
+import { User, Settings, TrendingUp, Wifi, CheckCircle, Zap, ChevronRight } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
 
 const LoadingFitness = () => {
@@ -148,7 +148,6 @@ const LoadingFitness = () => {
     }
   }, [showStartButton]);
 
-  const isCompleted = currentStep >= loadingSteps.length - 1;
   const isLastStep = currentStep === loadingSteps.length - 1;
 
   return (
