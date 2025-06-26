@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ChevronRight, ChevronLeft, Star, Target, Clock, Zap, Heart, Brain, Utensils, AlertCircle, CheckCircle2, Users } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
 
@@ -53,7 +53,7 @@ const NutritionQuizGame = () => {
   
   const femaleProfile = isFemaleProfile();
 
-  const questions: Question[] = [
+  const questions: Question[] = useMemo(() => [
     {
       id: 1,
       category: "IDENTIFICAÇÃO",
@@ -216,7 +216,7 @@ const NutritionQuizGame = () => {
         ])
       ]
     }
-  ];
+  ], [femaleProfile]);
 
   useEffect(() => {
     const currentQ = questions[currentQuestion];
