@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import GamingLogin from './components/GamingLogin';
+import Onboarding from './components/Onboarding';
+import LoadingFitness from './components/LoadingFitness';
+import NutritionQuizGame from './components/NutritionQuizGame';
+import Dashboard from './components/Dashboard';
+import BasicSliderTest from './components/BasicSliderTest';
+import TestSlider from './components/TestSlider';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<GamingLogin />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/loading" element={<LoadingFitness />} />
+          <Route path="/nutrition-quiz" element={<NutritionQuizGame />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/teste-slider" element={<BasicSliderTest />} />
+          <Route path="/debug-slider" element={<TestSlider />} />
+          <Route path="/cadastro" element={<div className="min-h-screen gaming-bg flex items-center justify-center"><div className="gaming-card p-8 rounded-3xl text-center"><h1 className="text-2xl font-bold mb-4 text-white">🎮 Página de Cadastro</h1><p className="text-gray-300">Em desenvolvimento...</p></div></div>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
