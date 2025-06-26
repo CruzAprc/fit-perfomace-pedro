@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronLeft, Star, Target, Clock, Zap, Heart, Brain, Utensils, AlertCircle, CheckCircle2, Users } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Target, Clock, Heart, Brain, Utensils, AlertCircle, CheckCircle2, Users } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
 
 interface Option {
@@ -42,7 +42,6 @@ const NutritionQuizGame = () => {
   const [answers, setAnswers] = useState<{[key: number]: SelectedAnswer}>({});
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
-  // const [timeLeft, setTimeLeft] = useState(30);
   const [isCompleted, setIsCompleted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<SelectedAnswer>(null);
   const [pickerValue, setPickerValue] = useState(70);
@@ -233,35 +232,35 @@ const NutritionQuizGame = () => {
       setPickerValue(currentQ.defaultAge);
       setSelectedAnswer({ value: currentQ.defaultAge, points: 10 });
     }
-  }, [currentQuestion]);
+  }, [currentQuestion, questions]);
 
 
 
-  const handleAnswerSelect = () => {
-    const currentQ = questions[currentQuestion];
-    if (!selectedAnswer || (Array.isArray(selectedAnswer) && selectedAnswer.length === 0)) return;
 
-    let questionScore = 0;
-    if (currentQ.type === 'multiple' && Array.isArray(selectedAnswer)) {
-      questionScore = selectedAnswer.reduce((sum: number, ans: Option) => sum + ans.points, 0);
-    } else if (!Array.isArray(selectedAnswer) && 'points' in selectedAnswer) {
-      questionScore = selectedAnswer.points;
-    }
-
-    setStreak(streak + 1);
-
-    if (streak >= 2) {
-      questionScore += streak * 2;
-    }
-
-    setScore(score + questionScore);
-    setAnswers({ ...answers, [currentQ.id]: selectedAnswer });
-    
-    // Ir para próxima questão imediatamente
-    nextQuestion();
-  };
 
   const nextQuestion = () => {
+    // Calcular pontuação antes de avançar
+    if (selectedAnswer) {
+      const currentQ = questions[currentQuestion];
+      let questionScore = 0;
+      
+      if (currentQ.type === 'multiple' && Array.isArray(selectedAnswer)) {
+        questionScore = selectedAnswer.reduce((sum: number, ans: Option) => sum + ans.points, 0);
+      } else if (!Array.isArray(selectedAnswer) && 'points' in selectedAnswer) {
+        questionScore = selectedAnswer.points;
+      }
+      
+      // Bonus de streak
+      let newStreak = streak + 1;
+      if (newStreak >= 2) {
+        questionScore += newStreak * 2;
+      }
+      
+      setScore(prev => prev + questionScore);
+      setStreak(newStreak);
+      setAnswers(prev => ({ ...prev, [currentQ.id]: selectedAnswer }));
+    }
+    
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
@@ -269,10 +268,13 @@ const NutritionQuizGame = () => {
       const nextQ = questions[currentQuestion + 1];
       if (nextQ.type === 'weight_picker' && nextQ.defaultWeight) {
         setPickerValue(nextQ.defaultWeight);
+        setSelectedAnswer({ value: nextQ.defaultWeight, points: 10 });
       } else if (nextQ.type === 'height_picker' && nextQ.defaultHeight) {
         setPickerValue(nextQ.defaultHeight);
+        setSelectedAnswer({ value: nextQ.defaultHeight, points: 10 });
       } else if (nextQ.type === 'age_picker' && nextQ.defaultAge) {
         setPickerValue(nextQ.defaultAge);
+        setSelectedAnswer({ value: nextQ.defaultAge, points: 10 });
       }
     } else {
       setIsCompleted(true);
@@ -524,7 +526,11 @@ const NutritionQuizGame = () => {
                          currentQ.type === 'height_picker' ? currentQ.maxHeight : 
                          currentQ.maxAge}
                     value={pickerValue}
-                    onChange={(e) => setPickerValue(Number(e.target.value))}
+                                         onChange={(e) => {
+                       const newValue = Number(e.target.value);
+                       setPickerValue(newValue);
+                       setSelectedAnswer({ value: newValue, points: 10 });
+                     }}
                     className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb"
                   />
                   
