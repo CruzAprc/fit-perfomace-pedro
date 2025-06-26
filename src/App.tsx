@@ -5,7 +5,6 @@ import Onboarding from './components/Onboarding';
 import LoadingFitness from './components/LoadingFitness';
 import NutritionQuizGame from './components/NutritionQuizGame';
 import Dashboard from './components/Dashboard';
-import './App.css';
 
 function App() {
   return (

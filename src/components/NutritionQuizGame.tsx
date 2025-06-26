@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, Star, Target, Clock, Zap, Heart, Brain, Utensils, AlertCircle, CheckCircle2, Users } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
 
@@ -36,6 +37,7 @@ interface Question {
 type SelectedAnswer = Option | Option[] | { value: number; points: number } | null;
 
 const NutritionQuizGame = () => {
+  const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<{[key: number]: SelectedAnswer}>({});
   const [score, setScore] = useState(0);
@@ -231,7 +233,7 @@ const NutritionQuizGame = () => {
       setPickerValue(currentQ.defaultAge);
       setSelectedAnswer({ value: currentQ.defaultAge, points: 10 });
     }
-  }, [currentQuestion, questions]);
+  }, [currentQuestion]);
 
 
 
@@ -328,56 +330,70 @@ const NutritionQuizGame = () => {
   };
 
   if (isCompleted) {
-    const scoreLevel = getScoreLevel();
+    const level = getScoreLevel();
+    
     return (
-      <div className="min-h-screen gaming-bg relative overflow-hidden flex items-center justify-center p-4">
+      <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center p-2">
         {/* Background gaming */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+          </div>
         </div>
 
-        <div className="relative z-10 max-w-lg w-full">
-          {/* Logo */}
-          <div className="flex justify-center mb-8">
-            <ModernFitLogo size={60} variant="icon-only" />
+        <div className="relative z-10 w-full max-w-lg mx-auto px-3">
+          {/* Logo compacta */}
+          <div className="flex justify-center mb-3">
+            <ModernFitLogo size={50} variant="icon-only" />
           </div>
 
-          {/* Container gaming */}
-          <div className="gaming-card rounded-2xl p-8 energy-border cyber-border">
-            {/* Cantos azul neon */}
-            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-blue-400"></div>
-            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-blue-400"></div>
-            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-blue-400"></div>
-            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-blue-400"></div>
+          {/* Container de resultado compacto */}
+          <div className="bg-black/60 backdrop-blur-sm rounded-xl border border-blue-400/30 p-4 shadow-xl relative overflow-hidden">
+            {/* Cantos neon */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-green-400"></div>
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-green-400"></div>
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-green-400"></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-green-400"></div>
 
-            <div className="text-center">
-              <div className="text-6xl mb-4">{scoreLevel.emoji}</div>
-              <h2 className={`text-2xl font-cyber font-bold ${scoreLevel.color} mb-2 neon-text`}>
-                {scoreLevel.level}
-              </h2>
-              <div className="text-4xl font-gaming font-bold text-white mb-4 digital-glitch">
-                {score} PONTOS
-              </div>
-              <div className="text-gray-300 mb-6">
-                Protocolo nutricional mapeado com sucesso!<br/>
-                <span className="text-blue-400">Seu perfil foi hackeado.</span>
-              </div>
+            {/* Conteúdo do resultado compacto */}
+            <div className="text-center space-y-3">
+              <div className="text-4xl mb-2">🎯</div>
               
-              <div className="space-y-4">
-                <div className="gaming-card p-4 bg-gradient-to-r from-green-500/10 via-green-400/15 to-green-500/10 border-2 border-green-400/50 rounded-xl">
-                  <div className="flex items-center justify-center space-x-2 text-green-400">
-                    <CheckCircle2 size={20} />
-                    <span className="font-cyber font-bold">PLANO PERSONALIZADO GERADO!</span>
-                  </div>
-                </div>
-                
-                <button className="w-full btn-special text-xl font-gaming py-4 rounded-xl">
-                  <span className="relative z-30">
-                    ACESSAR MEU PROTOCOLO
-                  </span>
-                </button>
+              <h2 className="text-xl font-bold text-white mb-1">Perfil Mapeado!</h2>
+              
+              <div className="bg-gradient-to-r from-green-600/20 to-blue-600/20 rounded-lg p-3 border border-green-400/30">
+                <div className="text-green-400 font-bold text-base mb-1">{level.level}</div>
+                <div className="text-gray-300 text-sm">Protocolo nutricional mapeado com sucesso!</div>
               </div>
+
+              {/* Score compacto */}
+              <div className="flex items-center justify-center space-x-3 py-2">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-400">{score}</div>
+                  <div className="text-xs text-gray-400">Pontos</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-400">{streak}</div>
+                  <div className="text-xs text-gray-400">Combo</div>
+                </div>
+              </div>
+
+              {/* Badge compacto */}
+              <div className="flex justify-center">
+                <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${level.color}`}>
+                  <span className="mr-1">{level.emoji}</span>
+                  {level.level}
+                </div>
+              </div>
+
+              {/* Botão de continuar compacto */}
+              <button
+                onClick={() => navigate('/dashboard')}
+                className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg border border-green-400/30 mt-4"
+              >
+                🚀 Acessar Dashboard
+              </button>
             </div>
           </div>
         </div>
@@ -386,335 +402,192 @@ const NutritionQuizGame = () => {
   }
 
   const currentQ = questions[currentQuestion];
-  const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className="h-screen gaming-bg relative overflow-hidden flex flex-col p-3 sm:p-4">
+    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center p-2">
       {/* Background gaming */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        </div>
       </div>
 
-      <div className="relative z-10 max-w-2xl w-full mx-auto flex flex-col h-full">
-        {/* Container principal gaming */}
-        <div className="bg-gray-900/80 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-slate-600/40 shadow-2xl relative flex-1 flex flex-col min-h-0">
-          {/* Cantos sutis */}
-          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-slate-400/60"></div>
-          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-slate-400/60"></div>
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-slate-400/60"></div>
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-slate-400/60"></div>
+      {/* Particles dinâmicas reduzidas */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float-modern ${3 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
 
-          {/* Header gaming */}
-          <div className="flex flex-col sm:flex-row items-center justify-between mb-2 sm:mb-3 gap-2 sm:gap-0 flex-shrink-0">
-            <div className="flex items-center space-x-3">
-              <ModernFitLogo size={40} variant="icon-only" className="sm:hidden" />
-              <ModernFitLogo size={48} variant="icon-only" className="hidden sm:block" />
-              <div>
-                <div className={`text-xs uppercase tracking-wide font-cyber font-bold ${femaleProfile ? 'text-pink-300' : 'text-blue-300'}`}>{currentQ.category}</div>
-                <div className="text-white font-gaming font-bold text-sm sm:text-base">{currentQuestion + 1} de {questions.length}</div>
-              </div>
+      <div className="relative z-10 w-full max-w-lg mx-auto px-3">
+        {/* Header compacto com logo e progresso */}
+        <div className="mb-3">
+          {/* Logo e progresso em uma linha */}
+          <div className="flex items-center justify-between mb-2">
+            <ModernFitLogo size={40} variant="icon-only" />
+            <div className="text-right">
+              <div className="text-xs text-gray-400">Questão {currentQuestion + 1} de {questions.length}</div>
+              <div className="text-lg font-bold text-white">{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</div>
+            </div>
+          </div>
+
+          {/* Progress bar compacta */}
+          <div className="relative h-1 bg-gray-800/50 rounded-full overflow-hidden border border-gray-600/30">
+            <div 
+              className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Container principal compacto */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-blue-400/30 p-3 shadow-xl relative overflow-hidden">
+          {/* Cantos neon */}
+          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-blue-400"></div>
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-blue-400"></div>
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-400"></div>
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-blue-400"></div>
+
+          {/* Cabeçalho da questão compacto */}
+          <div className="text-center mb-4">
+            <div className="inline-flex items-center px-2 py-1 bg-blue-500/20 rounded-lg border border-blue-400/30 mb-2">
+              <currentQ.icon className="w-3 h-3 text-blue-400 mr-1" />
+              <span className="text-xs text-blue-300 font-medium">{currentQ.category}</span>
             </div>
             
-            <div className="flex items-center space-x-2">
-              <div className="bg-amber-500/15 border border-amber-400/30 rounded-md px-2 py-1 flex items-center space-x-1">
-                <Star className="w-3 h-3 text-amber-400" />
-                <span className="text-amber-200 font-bold font-gaming text-sm">{score}</span>
-              </div>
-              
-              {streak > 0 && (
-                <div className="bg-orange-500/15 border border-orange-400/30 rounded-md px-2 py-1 flex items-center space-x-1 text-orange-300">
-                  <Zap className="w-3 h-3" />
-                  <span className="font-bold font-gaming text-sm">{streak}x</span>
-                </div>
-              )}
-            </div>
+            <h2 className="text-lg font-bold text-white mb-1">{currentQ.title}</h2>
+            <p className="text-sm text-gray-300 mb-1">{currentQ.subtitle}</p>
+            <p className="text-xs text-gray-400">{currentQ.description}</p>
           </div>
 
-          {/* Progress Bar gaming */}
-          <div className="mb-3 flex-shrink-0">
-            <div className="flex justify-between items-center mb-2">
-              <span className={`font-cyber font-bold text-xs ${femaleProfile ? 'text-pink-300' : 'text-blue-300'}`}>PROGRESSO</span>
-              <span className="text-white font-gaming font-bold text-sm">{Math.round(progress)}%</span>
-            </div>
-            <div className={`relative h-2 bg-gray-800/40 rounded-lg overflow-hidden border ${femaleProfile ? 'border-pink-400/30' : 'border-blue-400/30'}`}>
-              <div 
-                className={`absolute inset-0 rounded-lg transition-all duration-500 ease-out ${femaleProfile ? 'bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500' : 'bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500'}`}
-                style={{ width: `${progress}%` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
-            </div>
-          </div>
+          {/* Área das opções/picker compacta */}
+          <div className="mb-4">
+            {/* Opções múltiplas/simples */}
+            {(currentQ.type === 'single' || currentQ.type === 'multiple') && currentQ.options && (
+              <div className="space-y-2">
+                {currentQ.options.map((option) => {
+                  const isSelected = currentQ.type === 'multiple' 
+                    ? Array.isArray(selectedAnswer) && selectedAnswer.some(a => a.id === option.id)
+                    : selectedAnswer && !Array.isArray(selectedAnswer) && 'id' in selectedAnswer && selectedAnswer.id === option.id;
 
-          {/* Question gaming */}
-          <div className="mb-3 bg-slate-800/30 rounded-lg p-3 border border-slate-600/30 flex-shrink-0">
-            <h2 className="text-lg sm:text-xl font-cyber font-bold text-white mb-2 leading-tight">{currentQ.title}</h2>
-            <p className="text-sm sm:text-base text-slate-200 mb-2 font-semibold">{currentQ.subtitle}</p>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{currentQ.description}</p>
-            
-            {currentQ.type === 'multiple' && (
-              <div className="mt-2 bg-amber-500/15 border border-amber-400/30 rounded-md p-2 flex items-center space-x-2">
-                <Zap className="w-4 h-4 text-amber-400" />
-                <span className="text-amber-200 font-cyber font-bold text-xs">Selecione até {currentQ.maxSelections} opções</span>
-              </div>
-            )}
-          </div>
-
-          {/* Content Area - Scrollable */}
-          <div className="flex-1 overflow-y-auto min-h-0 mb-3">
-            {/* Gaming Sliders com visual mais avançado */}
-            {currentQ.type === 'weight_picker' || currentQ.type === 'height_picker' || currentQ.type === 'age_picker' ? (
-              <div className="mb-4 bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border-2 border-cyan-400/30 relative overflow-hidden shadow-2xl">
-                {/* Cantos gaming neon */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-cyan-400"></div>
-                <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-cyan-400"></div>
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-cyan-400"></div>
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-cyan-400"></div>
-
-                {/* Background pattern gaming */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/20 via-transparent to-blue-500/20"></div>
-                  <div className="absolute top-4 left-4 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                  <div className="absolute top-6 right-8 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                  <div className="absolute bottom-8 left-6 w-1.5 h-1.5 bg-cyan-300 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-                </div>
-
-                {/* Header gaming */}
-                <div className="text-center mb-8 relative z-10">
-                  <div className={`text-xs uppercase tracking-widest font-bold mb-3 ${femaleProfile ? 'text-pink-300' : 'text-cyan-300'} font-mono`}>
-                    {currentQ.type === 'weight_picker' ? '⚖️ SCAN PESO CORPORAL' : 
-                     currentQ.type === 'height_picker' ? '📏 SCAN ALTURA FÍSICA' : 
-                     '🎂 ANÁLISE TEMPORAL'}
-                  </div>
-                  
-                  {/* Display valor principal com efeito neon */}
-                  <div className="relative">
-                    <div className={`text-6xl font-black text-white mb-2 font-mono tracking-wider filter drop-shadow-lg ${
-                      femaleProfile ? 'text-pink-400' : 'text-cyan-400'
-                    }`} style={{
-                      textShadow: `0 0 20px ${femaleProfile ? '#ec4899' : '#06b6d4'}, 0 0 40px ${femaleProfile ? '#ec489950' : '#06b6d450'}`
-                    }}>
-                      {pickerValue}
-                    </div>
-                    <div className={`text-lg font-bold ${femaleProfile ? 'text-pink-300' : 'text-cyan-300'} font-mono tracking-wide`}>
-                      {currentQ.type === 'weight_picker' ? 'QUILOS' : 
-                       currentQ.type === 'height_picker' ? 'CENTÍMETROS' : 
-                       'ANOS'}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Slider gaming customizado */}
-                <div className="relative z-10">
-                  {/* Background track gaming */}
-                  <div className="relative h-4 mb-6">
-                    <div className="absolute inset-0 bg-gray-800/50 rounded-full border border-gray-600/30"></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-700/30 via-gray-600/30 to-gray-700/30 rounded-full"></div>
-                    
-                    {/* Progress track com gradiente gaming */}
-                    <div 
-                      className={`absolute top-0 left-0 h-4 rounded-full border-2 transition-all duration-300 ${
-                        femaleProfile 
-                          ? 'bg-gradient-to-r from-pink-500 via-pink-400 to-rose-400 border-pink-300/50 shadow-lg shadow-pink-500/30' 
-                          : 'bg-gradient-to-r from-cyan-500 via-cyan-400 to-blue-400 border-cyan-300/50 shadow-lg shadow-cyan-500/30'
+                  return (
+                    <button
+                      key={option.id}
+                      onClick={() => handleOptionClick(option)}
+                      className={`w-full text-left p-3 rounded-lg transition-all duration-300 border-2 ${
+                        isSelected
+                          ? 'border-blue-400 bg-blue-500/20 text-white shadow-lg transform scale-105'
+                          : 'border-gray-600/30 bg-gray-800/30 text-gray-300 hover:border-blue-400/50 hover:bg-blue-500/10'
                       }`}
-                      style={{ 
-                        width: `${((pickerValue - (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                                 currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                                 (currentQ.minAge || 13))) / 
-                                ((currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
-                                  currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
-                                  (currentQ.maxAge || 100)) - 
-                                 (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                                  currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                                  (currentQ.minAge || 13)))) * 100}%`,
-                        boxShadow: `0 0 20px ${femaleProfile ? '#ec489950' : '#06b6d450'}`
-                      }}
-                    />
-
-                    {/* Slider input invisível por cima */}
-                    <input
-                      type="range"
-                      min={currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                           currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                           (currentQ.minAge || 13)}
-                      max={currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
-                           currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
-                           (currentQ.maxAge || 100)}
-                      value={pickerValue}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        const newValue = parseInt(e.target.value);
-                        setPickerValue(newValue);
-                        setSelectedAnswer({ value: newValue, points: 10 });
-                      }}
-                      className="absolute inset-0 w-full h-4 opacity-0 cursor-pointer z-10"
-                    />
-
-                    {/* Thumb customizado */}
-                    <div 
-                      className={`absolute top-1/2 w-8 h-8 rounded-full border-4 transition-all duration-300 transform -translate-y-1/2 pointer-events-none z-20 ${
-                        femaleProfile 
-                          ? 'bg-pink-400 border-pink-200 shadow-lg shadow-pink-500/50' 
-                          : 'bg-cyan-400 border-cyan-200 shadow-lg shadow-cyan-500/50'
-                      }`}
-                      style={{ 
-                        left: `calc(${((pickerValue - (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                                       currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                                       (currentQ.minAge || 13))) / 
-                                      ((currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
-                                        currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
-                                        (currentQ.maxAge || 100)) - 
-                                       (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                                        currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                                        (currentQ.minAge || 13)))) * 100}% - 16px)`,
-                        boxShadow: `0 0 15px ${femaleProfile ? '#ec4899' : '#06b6d4'}`
-                      }}
                     >
-                      <div className={`w-2 h-2 rounded-full ${femaleProfile ? 'bg-pink-200' : 'bg-cyan-200'} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}></div>
-                    </div>
-                  </div>
-
-                  {/* Labels gaming nos extremos */}
-                  <div className="flex justify-between items-center text-sm font-mono">
-                    <div className="text-center">
-                      <div className={`px-3 py-1 rounded-lg border ${femaleProfile ? 'bg-pink-500/20 border-pink-400/30 text-pink-300' : 'bg-cyan-500/20 border-cyan-400/30 text-cyan-300'}`}>
-                        MIN: {currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                              currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                              (currentQ.minAge || 13)}
-                      </div>
-                    </div>
-                    <div className="text-center">
-                      <div className={`px-3 py-1 rounded-lg border ${femaleProfile ? 'bg-pink-500/20 border-pink-400/30 text-pink-300' : 'bg-cyan-500/20 border-cyan-400/30 text-cyan-300'}`}>
-                        MAX: {currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
-                              currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
-                              (currentQ.maxAge || 100)}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Status bar gaming */}
-                  <div className="mt-6 p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-gray-400">STATUS DO SCAN:</span>
-                      <span className={`font-bold ${femaleProfile ? 'text-pink-400' : 'text-cyan-400'}`}>
-                        {currentQ.type === 'weight_picker' ? '⚖️ CALIBRANDO MASSA' : 
-                         currentQ.type === 'height_picker' ? '📏 MEDINDO ALTURA' : 
-                         '🎂 ANALISANDO IDADE'}
-                      </span>
-                    </div>
-                    <div className="mt-2 flex space-x-1">
-                      {[...Array(5)].map((_, i) => (
-                        <div 
-                          key={i} 
-                          className={`h-1 w-full rounded-full transition-all duration-300 ${
-                            i < 4 ? (femaleProfile ? 'bg-pink-400' : 'bg-cyan-400') : 'bg-gray-600'
-                          }`}
-                          style={{ animationDelay: `${i * 0.2}s` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 gap-3">
-              {currentQ.options?.map((option) => {
-                const isSelected = currentQ.type === 'single' 
-                  ? !Array.isArray(selectedAnswer) && selectedAnswer && 'id' in selectedAnswer && selectedAnswer.id === option.id
-                  : Array.isArray(selectedAnswer) && selectedAnswer.some((item: Option) => item.id === option.id);
-
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => handleOptionClick(option)}
-                    disabled={false}
-                    className={`relative bg-slate-800/60 backdrop-blur-sm border-2 rounded-xl p-4 transition-all duration-300 transform hover:scale-[1.02] shadow-lg ${
-                      isSelected 
-                        ? (option.id === 2 && currentQ.id === 1 
-                           ? 'border-pink-400 bg-pink-500/20 shadow-pink-500/25' 
-                           : 'border-blue-400 bg-blue-500/20 shadow-blue-500/25')
-                        : `border-slate-500/50 ${femaleProfile ? 'hover:border-pink-400/70 hover:bg-pink-500/10 hover:shadow-pink-500/10' : 'hover:border-blue-400/70 hover:bg-blue-500/10 hover:shadow-blue-500/10'}`
-                    } cursor-pointer`}
-                  >
-                    {/* Cantos coloridos quando selecionado */}
-                    {isSelected && (
-                      <>
-                        <div className={`absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 ${
-                          (option.id === 2 && currentQ.id === 1) || femaleProfile ? 'border-pink-400' : 'border-blue-400'
-                        }`}></div>
-                        <div className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 ${
-                          (option.id === 2 && currentQ.id === 1) || femaleProfile ? 'border-pink-400' : 'border-blue-400'
-                        }`}></div>
-                        <div className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 ${
-                          (option.id === 2 && currentQ.id === 1) || femaleProfile ? 'border-pink-400' : 'border-blue-400'
-                        }`}></div>
-                        <div className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 ${
-                          (option.id === 2 && currentQ.id === 1) || femaleProfile ? 'border-pink-400' : 'border-blue-400'
-                        }`}></div>
-                      </>
-                    )}
-                    
-                    <div className="flex items-center space-x-4">
-                      {/* Emoji com fundo */}
-                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center text-2xl border-2 transition-all ${
-                        isSelected 
-                          ? (option.id === 2 && currentQ.id === 1 
-                             ? 'bg-pink-500/30 border-pink-400' 
-                             : 'bg-blue-500/30 border-blue-400')
-                          : 'bg-slate-700/50 border-slate-500/30'
-                      }`}>
-                        {option.emoji}
-                      </div>
-                      
-                      {/* Texto principal */}
-                      <div className="flex-1 text-left">
-                        <div className="text-white font-bold text-base sm:text-lg mb-2 leading-tight">{option.text}</div>
-                        <div className={`text-sm font-gaming font-bold ${
-                          (isSelected && option.id === 2 && currentQ.id === 1) || (isSelected && femaleProfile)
-                            ? 'text-pink-300' 
-                            : 'text-blue-300'
-                        }`}>+{option.points} pontos</div>
-                      </div>
-                      
-                      {/* Indicador de seleção */}
-                      <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all ${
-                        isSelected 
-                          ? ((option.id === 2 && currentQ.id === 1) || femaleProfile
-                             ? 'border-pink-400 bg-pink-400 shadow-lg shadow-pink-400/50' 
-                             : 'border-blue-400 bg-blue-400 shadow-lg shadow-blue-400/50')
-                          : `border-slate-400 ${femaleProfile ? 'hover:border-pink-400/70' : 'hover:border-blue-400/70'}`
-                      }`}>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-lg">{option.emoji}</span>
+                          <span className="font-medium text-sm">{option.text}</span>
+                        </div>
                         {isSelected && (
-                          <CheckCircle2 className="w-4 h-4 text-white" />
+                          <CheckCircle2 className="w-4 h-4 text-blue-400" />
                         )}
                       </div>
-                    </div>
-                  </button>
-                );
-              })}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Pickers compactos */}
+            {(currentQ.type === 'weight_picker' || currentQ.type === 'height_picker' || currentQ.type === 'age_picker') && (
+              <div className="space-y-3">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-400 mb-1">
+                    {pickerValue}{currentQ.unit}
+                  </div>
+                </div>
+                
+                <div className="px-2">
+                  <input
+                    type="range"
+                    min={currentQ.type === 'weight_picker' ? currentQ.minWeight : 
+                         currentQ.type === 'height_picker' ? currentQ.minHeight : 
+                         currentQ.minAge}
+                    max={currentQ.type === 'weight_picker' ? currentQ.maxWeight : 
+                         currentQ.type === 'height_picker' ? currentQ.maxHeight : 
+                         currentQ.maxAge}
+                    value={pickerValue}
+                    onChange={(e) => setPickerValue(Number(e.target.value))}
+                    className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer slider-thumb"
+                  />
+                  
+                  <div className="flex justify-between text-xs text-gray-400 mt-1">
+                    <span>
+                      {currentQ.type === 'weight_picker' ? currentQ.minWeight : 
+                       currentQ.type === 'height_picker' ? currentQ.minHeight : 
+                       currentQ.minAge}{currentQ.unit}
+                    </span>
+                    <span>
+                      {currentQ.type === 'weight_picker' ? currentQ.maxWeight : 
+                       currentQ.type === 'height_picker' ? currentQ.maxHeight : 
+                       currentQ.maxAge}{currentQ.unit}
+                    </span>
+                  </div>
+                </div>
               </div>
             )}
           </div>
 
-          {/* Action Buttons gaming */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:justify-between items-center flex-shrink-0">
-            {/* Botão Voltar */}
+          {/* Navegação compacta */}
+          <div className="flex justify-between items-center pt-3 border-t border-gray-600/30">
             <button
               onClick={previousQuestion}
               disabled={currentQuestion === 0}
-              className="w-full sm:w-auto bg-gray-700 hover:bg-gray-600 disabled:bg-gray-800 text-white font-gaming font-bold py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg text-sm"
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 ${
+                currentQuestion === 0
+                  ? 'text-gray-600 cursor-not-allowed'
+                  : 'text-gray-300 hover:text-white hover:bg-gray-700/30'
+              }`}
             >
               <ChevronLeft className="w-4 h-4" />
-              <span>VOLTAR</span>
+              <span className="text-sm">Voltar</span>
             </button>
-            
-            {/* Botão Principal */}
+
+            <div className="flex items-center space-x-2">
+              {/* Score atual compacto */}
+              <div className="text-center px-2">
+                <div className="text-lg font-bold text-blue-400">{score}</div>
+                <div className="text-xs text-gray-400">Pts</div>
+              </div>
+
+              {/* Streak compacto */}
+              {streak > 0 && (
+                <div className="text-center px-2">
+                  <div className="text-lg font-bold text-green-400">{streak}</div>
+                  <div className="text-xs text-gray-400">Combo</div>
+                </div>
+              )}
+            </div>
+
             <button
-              onClick={handleAnswerSelect}
-              disabled={!selectedAnswer || (Array.isArray(selectedAnswer) && selectedAnswer.length === 0)}
-              className={`w-full sm:w-auto text-white font-gaming font-bold py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg text-sm ${femaleProfile ? 'bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 shadow-pink-500/25' : 'bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-blue-500/25'} disabled:from-gray-600 disabled:to-gray-700`}
+              onClick={nextQuestion}
+              disabled={!selectedAnswer}
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-300 ${
+                selectedAnswer
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg'
+                  : 'bg-gray-700 text-gray-500 cursor-not-allowed'
+              }`}
             >
-              <span className="text-center">{currentQuestion === questions.length - 1 ? 'FINALIZAR' : 'PRÓXIMO'}</span>
+              <span className="text-sm">
+                {currentQuestion === questions.length - 1 ? 'Finalizar' : 'Próxima'}
+              </span>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>

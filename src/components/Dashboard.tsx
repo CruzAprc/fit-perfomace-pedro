@@ -12,60 +12,92 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen gaming-bg">
-      <div className="container mx-auto px-4 py-8">
-        <div className="gaming-card rounded-3xl p-8">
-          
-          {/* Gaming Header */}
-          <div className="flex justify-between items-center mb-8">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <ModernFitLogo size={60} variant="icon-only" />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full animate-pulse-glow"></div>
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white">🎮 Gaming Dashboard</h1>
-                <p className="text-gray-300">⚡ Bem-vinda de volta, {user.email}!</p>
-              </div>
-            </div>
-            <button
-              onClick={logout}
-              className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl transition-colors font-medium"
-            >
-              🚪 Sair
-            </button>
-          </div>
+    <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center p-2">
+      {/* Background moderno */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        </div>
+      </div>
 
-          {/* Gaming Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-gray-900 border border-blue-500 border-opacity-30 rounded-2xl p-6 text-center glow-effect">
-              <div className="text-3xl mb-3">⚔️</div>
-              <h3 className="font-bold text-white">Missões</h3>
-              <p className="text-gray-400 text-sm">Treinos ativos</p>
-              <div className="mt-3 xp-bar h-2">
-                <div className="xp-fill h-full" style={{ width: '75%' }}></div>
-              </div>
+      {/* Particles dinâmicas reduzidas */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(10)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-60"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float-modern ${3 + Math.random() * 4}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 2}s`
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 w-full max-w-lg mx-auto px-3">
+        {/* Header compacto */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <ModernFitLogo size={40} variant="icon-only" />
+              <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             </div>
-            <div className="bg-gray-900 border border-green-400 border-opacity-30 rounded-2xl p-6 text-center glow-effect">
-              <div className="text-3xl mb-3">📈</div>
-              <h3 className="font-bold text-white">XP & Level</h3>
-              <p className="text-gray-400 text-sm">Progresso geral</p>
-              <div className="mt-3 text-green-400 font-bold">Level 42</div>
-            </div>
-            <div className="bg-gray-900 border border-yellow-400 border-opacity-30 rounded-2xl p-6 text-center glow-effect">
-              <div className="text-3xl mb-3">🏆</div>
-              <h3 className="font-bold text-white">Conquistas</h3>
-              <p className="text-gray-400 text-sm">Badges desbloqueadas</p>
-              <div className="mt-3 text-yellow-400 font-bold">12/25</div>
+            <div>
+              <h1 className="text-lg font-bold text-white">🎮 Gaming Dashboard</h1>
+              <p className="text-xs text-gray-300">⚡ Bem-vinda, {user.email || 'Usuário'}!</p>
             </div>
           </div>
+          <button
+            onClick={logout}
+            className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium text-xs"
+          >
+            🚪 Sair
+          </button>
+        </div>
 
-          {/* Gaming Status */}
-          <div className="bg-gray-900 border border-blue-500 border-opacity-30 rounded-2xl p-6">
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        {/* Container principal compacto */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-blue-400/30 p-3 shadow-xl relative overflow-hidden">
+          {/* Cantos neon */}
+          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-blue-400"></div>
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-blue-400"></div>
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-400"></div>
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-blue-400"></div>
+
+          {/* Gaming Cards compactos */}
+          <div className="grid grid-cols-3 gap-2 mb-4">
+            <div className="bg-gray-900/50 border border-blue-500/30 rounded-lg p-2 text-center relative overflow-hidden">
+              <div className="text-lg mb-1">⚔️</div>
+              <h3 className="font-bold text-white text-xs">Missões</h3>
+              <p className="text-gray-400 text-xs">Treinos ativos</p>
+              <div className="mt-1 bg-gray-800/50 rounded-full h-1 overflow-hidden">
+                <div className="bg-gradient-to-r from-blue-400 to-blue-500 h-full rounded-full" style={{ width: '75%' }}></div>
+              </div>
+            </div>
+            
+            <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-2 text-center relative overflow-hidden">
+              <div className="text-lg mb-1">📈</div>
+              <h3 className="font-bold text-white text-xs">XP & Level</h3>
+              <p className="text-gray-400 text-xs">Progresso geral</p>
+              <div className="mt-1 text-green-400 font-bold text-xs">Level 42</div>
+            </div>
+            
+            <div className="bg-gray-900/50 border border-yellow-400/30 rounded-lg p-2 text-center relative overflow-hidden">
+              <div className="text-lg mb-1">🏆</div>
+              <h3 className="font-bold text-white text-xs">Conquistas</h3>
+              <p className="text-gray-400 text-xs">Badges desbloqueadas</p>
+              <div className="mt-1 text-yellow-400 font-bold text-xs">12/25</div>
+            </div>
+          </div>
+
+          {/* Gaming Status compacto */}
+          <div className="bg-gray-900/50 border border-blue-500/30 rounded-lg p-3">
+            <h2 className="text-sm font-bold text-white mb-2 flex items-center gap-1">
               ⚡ Sistema Gaming Online!
             </h2>
-            <div className="space-y-3 text-sm">
+            <div className="space-y-2 text-xs">
               <div className="flex justify-between items-center">
                 <span className="text-gray-400">🔗 Status da Conexão:</span>
                 <span className="text-green-400 font-bold flex items-center gap-1">
@@ -88,14 +120,14 @@ const Dashboard = () => {
               </div>
             </div>
 
-            {/* Gaming XP Bar */}
-            <div className="mt-6">
-              <div className="flex justify-between text-xs text-gray-400 mb-2">
+            {/* Gaming XP Bar compacto */}
+            <div className="mt-3">
+              <div className="flex justify-between text-xs text-gray-400 mb-1">
                 <span>💫 XP Sessão Atual</span>
                 <span>850/1000 XP</span>
               </div>
-              <div className="xp-bar h-3">
-                <div className="xp-fill h-full" style={{ width: '85%' }}></div>
+              <div className="bg-gray-800/50 rounded-full h-2 overflow-hidden border border-gray-600/30">
+                <div className="bg-gradient-to-r from-blue-400 to-blue-500 h-full rounded-full transition-all duration-500" style={{ width: '85%' }}></div>
               </div>
             </div>
           </div>
