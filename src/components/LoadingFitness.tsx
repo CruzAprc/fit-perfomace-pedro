@@ -177,28 +177,28 @@ const LoadingFitness = () => {
       </div>
 
       <div className="relative z-10 w-full max-w-lg mx-auto px-3">
-        {/* Logo compacta centralizada */}
-        <div className="flex justify-center mb-4">
-          <ModernFitLogo size={60} variant="icon-only" />
+        {/* Logo centralizada */}
+        <div className="flex justify-center mb-6">
+          <ModernFitLogo size={80} variant="icon-only" />
         </div>
 
-        {/* Container principal ultra-compacto */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-blue-400/30 p-3 shadow-xl relative overflow-hidden">
+        {/* Container principal */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-blue-400/30 p-4 sm:p-5 shadow-xl relative overflow-hidden">
           {/* Cantos em azul neon - menores */}
           <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-blue-400"></div>
           <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-blue-400"></div>
           <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-400"></div>
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-blue-400"></div>
           
-          {/* Steps de loading ultra-compactos */}
-          <div className="space-y-2 mb-4">
+          {/* Steps de loading */}
+          <div className="space-y-3 mb-6">
             {loadingSteps.map((step, index) => {
               const IconComponent = step.icon;
               const isActive = index === currentStep;
               const isComplete = index < currentStep;
               
               return (
-                <div key={index} className={`relative bg-transparent border rounded-lg p-2 transition-all duration-500 ${
+                <div key={index} className={`relative bg-transparent border rounded-lg p-3 transition-all duration-500 ${
                   (isActive && isLastStep) ? 'border-green-400/60 scale-102' :
                   isActive ? 'border-blue-400/60 scale-102' : 
                   isComplete ? 'border-green-400/40 opacity-80' : 
@@ -215,9 +215,9 @@ const LoadingFitness = () => {
                     </>
                   )}
                   
-                  <div className="flex items-center space-x-2">
-                    {/* Ícone compacto */}
-                    <div className={`relative w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                  <div className="flex items-center space-x-3">
+                    {/* Ícone */}
+                    <div className={`relative w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
                       isComplete 
                         ? 'bg-green-500/20 border border-green-400/50' 
                         : (isActive && isLastStep)
@@ -227,32 +227,32 @@ const LoadingFitness = () => {
                           : 'bg-gray-800/30 border border-gray-600/30'
                     }`}>
                       {isComplete ? (
-                        <CheckCircle className="w-3 h-3 text-green-400" />
+                        <CheckCircle className="w-5 h-5 text-green-400" />
                       ) : (
                         <IconComponent 
-                          className={`w-3 h-3 ${(isActive && isLastStep) ? 'text-green-400' : isActive ? 'text-blue-400' : 'text-gray-500'}`}
+                          className={`w-5 h-5 ${(isActive && isLastStep) ? 'text-green-400' : isActive ? 'text-blue-400' : 'text-gray-500'}`}
                         />
                       )}
                     </div>
 
-                    {/* Texto compacto */}
+                    {/* Texto */}
                     <div className="flex-1">
-                      <div className={`font-semibold text-xs transition-colors duration-300 ${
+                      <div className={`font-semibold text-sm sm:text-base transition-colors duration-300 ${
                         (isActive && isLastStep) ? 'text-green-400' : isActive ? 'text-white' : isComplete ? 'text-green-400' : 'text-gray-400'
                       }`}>
                         {step.text}
                       </div>
-                      <div className={`text-xs transition-colors duration-300 ${
+                      <div className={`text-xs sm:text-sm transition-colors duration-300 ${
                         (isActive && isLastStep) ? 'text-green-300' : isActive ? 'text-blue-300' : 'text-gray-500'
                       }`}>
                         {step.subtext}
                       </div>
 
-                      {/* Progress bar compacta */}
+                      {/* Progress bar */}
                       {isActive && !showStartButton && (
-                        <div className="mt-1 w-full bg-gray-800/50 rounded-full h-1 overflow-hidden border border-gray-600/30">
+                        <div className="mt-3 w-full bg-gray-800/50 rounded-full h-2 sm:h-2.5 overflow-hidden border border-gray-600/30">
                           <div 
-                            className={`h-1 rounded-full transition-all duration-300 ${isLastStep ? 'bg-gradient-to-r from-green-400 to-green-500' : 'bg-gradient-to-r from-blue-400 to-blue-500'}`}
+                            className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 ${isLastStep ? 'bg-gradient-to-r from-green-400 to-green-500' : 'bg-gradient-to-r from-blue-400 to-blue-500'}`}
                             style={{
                               width: `${stepProgress}%`
                             }}
@@ -327,12 +327,12 @@ const LoadingFitness = () => {
                 </div>
               </div>
 
-              {/* Botão compacto */}
+              {/* Botão */}
               {typingText === 'FitPerformance está desafiando você...' && (
-                <div className="mt-3 animate-fade-in">
+                <div className="mt-4 animate-fade-in">
                   <button
                     onClick={handleStartAnamnese}
-                    className="relative w-full bg-blue-900/30 backdrop-blur-sm border border-blue-400/30 rounded-xl p-4 transition-all duration-300 hover:border-blue-400/60 hover:bg-blue-900/40 hover:scale-[1.02] active:scale-[0.98] group overflow-hidden"
+                    className="relative w-full bg-blue-900/30 backdrop-blur-sm border border-blue-400/30 rounded-xl p-5 transition-all duration-300 hover:border-blue-400/60 hover:bg-blue-900/40 hover:scale-[1.02] active:scale-[0.98] group overflow-hidden"
                   >
                     {/* Cantos neon azuis compactos */}
                     <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-blue-400 transition-all duration-300 group-hover:border-cyan-400"></div>
@@ -344,11 +344,11 @@ const LoadingFitness = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
                     
                     {/* Conteúdo do botão */}
-                    <div className="relative z-10 flex items-center justify-center space-x-2">
-                      <span className="text-red-400 font-bold text-sm uppercase tracking-wider group-hover:text-red-300 transition-colors duration-300">
+                    <div className="relative z-10 flex items-center justify-center space-x-3">
+                      <span className="text-red-400 font-bold text-base sm:text-lg uppercase tracking-wider group-hover:text-red-300 transition-colors duration-300">
                         Iniciar Sistema
                       </span>
-                      <ChevronRight className="w-4 h-4 text-red-400 group-hover:text-red-300 group-hover:translate-x-1 transition-all duration-300" />
+                      <ChevronRight className="w-5 h-5 text-red-400 group-hover:text-red-300 group-hover:translate-x-1 transition-all duration-300" />
                     </div>
                     
                     {/* Linha de energia inferior */}

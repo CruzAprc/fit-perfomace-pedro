@@ -66,9 +66,9 @@ const Onboarding = () => {
         ))}
       </div>
 
-      {/* Gaming Header - Fixed */}
+      {/* Gaming Header - Responsivo */}
       <div className="w-full px-4 py-4 relative z-10">
-        <div className="max-w-sm mx-auto flex items-center justify-between">
+        <div className="max-w-sm sm:max-w-md lg:max-w-lg mx-auto flex items-center justify-between">
           <button 
             onClick={() => navigate('/login')}
             className="flex items-center text-gray-400 hover:text-white transition-colors energy-border rounded-lg px-3 py-2"
@@ -87,9 +87,9 @@ const Onboarding = () => {
         </div>
       </div>
 
-      {/* Main Content - Flexível */}
+      {/* Main Content - Responsivo */}
       <div className="flex-1 flex flex-col justify-center px-4 relative z-10">
-        <div className="max-w-sm mx-auto w-full">
+        <div className="max-w-sm sm:max-w-md lg:max-w-lg mx-auto w-full">
           
           {/* Logo e Título - Compacto */}
           <div className="text-center mb-6">
@@ -132,34 +132,34 @@ const Onboarding = () => {
           <div className="mb-6">
             <div className="gaming-card rounded-3xl p-8 animate-slide-in-up holographic cyber-border">
               
-              {/* VÍDEO MEGA - Perfeitamente Centralizado */}
-              <div className="relative bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-3xl mb-6 holographic scan-line overflow-hidden flex items-center justify-center" style={{minHeight: '320px'}}>
+              {/* VÍDEO MEGA - Responsivo */}
+              <div className="relative bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-3xl mb-6 holographic scan-line overflow-hidden flex items-center justify-center" style={{minHeight: '280px'}}>
                 
                 {/* Background Effects Intensos */}
                 <div className="absolute inset-0 bg-blue-400 bg-opacity-30 rounded-3xl"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-3xl"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-transparent to-blue-600 rounded-3xl opacity-50"></div>
                 
-                {/* Video Player - PERFEITAMENTE CENTRALIZADO */}
+                {/* Video Player - Responsivo */}
                 <div className="relative z-10">
-                  <div className="w-32 h-32 bg-white bg-opacity-25 rounded-full flex items-center justify-center animate-pulse-glow energy-border cursor-pointer hover:scale-110 transition-all duration-500 hover:bg-opacity-35">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white bg-opacity-25 rounded-full flex items-center justify-center animate-pulse-glow energy-border cursor-pointer hover:scale-110 transition-all duration-500 hover:bg-opacity-35">
+                    <svg width="48" height="48" className="sm:w-16 sm:h-16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M8 5V19L19 12L8 5Z" fill="white"/>
                     </svg>
                   </div>
                 </div>
                 
-                {/* Multiple Orbital Rings - Centralizados */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-2 border-white border-opacity-50 rounded-full animate-spin" style={{animationDuration: '6s'}}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-52 h-52 border-2 border-white border-opacity-40 rounded-full animate-spin" style={{animationDuration: '8s', animationDirection: 'reverse'}}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-white border-opacity-30 rounded-full animate-spin" style={{animationDuration: '12s'}}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-76 h-76 border border-white border-opacity-20 rounded-full animate-spin" style={{animationDuration: '16s', animationDirection: 'reverse'}}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-white border-opacity-15 rounded-full animate-spin" style={{animationDuration: '20s'}}></div>
+                {/* Multiple Orbital Rings - Responsivos */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-40 sm:h-40 border-2 border-white border-opacity-50 rounded-full animate-spin" style={{animationDuration: '6s'}}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-52 sm:h-52 border-2 border-white border-opacity-40 rounded-full animate-spin" style={{animationDuration: '8s', animationDirection: 'reverse'}}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 sm:w-64 sm:h-64 border border-white border-opacity-30 rounded-full animate-spin" style={{animationDuration: '12s'}}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 sm:w-76 sm:h-76 border border-white border-opacity-20 rounded-full animate-spin" style={{animationDuration: '16s', animationDirection: 'reverse'}}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 border border-white border-opacity-15 rounded-full animate-spin" style={{animationDuration: '20s'}}></div>
                 
-                {/* Pulse Effects Centralizados */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 border-4 border-white border-opacity-30 rounded-full animate-ping"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-white border-opacity-40 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 border border-white border-opacity-25 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+                {/* Pulse Effects Responsivos */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-28 h-28 sm:w-36 sm:h-36 border-4 border-white border-opacity-30 rounded-full animate-ping"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-48 sm:h-48 border-2 border-white border-opacity-40 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-44 h-44 sm:w-60 sm:h-60 border border-white border-opacity-25 rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
                 
                 {/* Particles Flutuantes */}
                 <div className="absolute top-4 left-4 w-2 h-2 bg-white rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
@@ -168,14 +168,14 @@ const Onboarding = () => {
                 <div className="absolute bottom-4 right-4 w-2 h-2 bg-white rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
               </div>
               
-              {/* Video Info - Centralizada */}
+              {/* Video Info - Responsiva */}
               <div className="text-center">
                 <div className="flex items-center justify-center text-white mb-2">
                   <div className="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></div>
-                  <span className="font-mono text-lg font-bold">3:45 min</span>
+                  <span className="font-mono text-base sm:text-lg font-bold">3:45 min</span>
                   <div className="w-3 h-3 bg-green-400 rounded-full ml-3 animate-pulse" style={{animationDelay: '0.5s'}}></div>
                 </div>
-                <p className="text-blue-300 text-sm font-mono">SISTEMA NEURAL ATIVO</p>
+                <p className="text-blue-300 text-xs sm:text-sm font-mono">SISTEMA NEURAL ATIVO</p>
               </div>
             </div>
           </div>
@@ -196,26 +196,26 @@ const Onboarding = () => {
             <div className="energy-wave"></div>
             <div className="energy-wave"></div>
             
-            {/* Botão Principal - Tamanho Normal */}
+            {/* Botão Principal - Responsivo */}
             <button
               onClick={completeOnboarding}
-              className="w-full btn-special text-xl font-gaming py-4 rounded-xl relative z-20"
+              className="w-full btn-special text-lg sm:text-xl font-gaming py-3 sm:py-4 rounded-xl relative z-20"
             >
               <span className="relative z-30">
                 HACKEAR MEU CORPO
               </span>
             </button>
             
-            <div className="flex items-center justify-center mt-4 text-sm text-gray-400">
+            <div className="flex items-center justify-center mt-4 text-xs sm:text-sm text-gray-400">
               <div className="power-core w-3 h-3 rounded-full mr-2"></div>
-              <span className="font-mono font-bold">SISTEMA CARREGADO • PRONTO PARA HACK</span>
+              <span className="font-mono font-bold text-center">SISTEMA CARREGADO • PRONTO PARA HACK</span>
               <div className="power-core w-3 h-3 rounded-full ml-2" style={{animationDelay: '0.5s'}}></div>
             </div>
           </div>
 
-          {/* Efeito de Digitação - Abaixo do Botão */}
+          {/* Efeito de Digitação - Responsivo */}
           <div className="text-center mb-6">
-            <div className="text-red-500 font-cyber text-xl font-bold typing-effect digital-glitch">
+            <div className="text-red-500 font-cyber text-lg sm:text-xl font-bold typing-effect digital-glitch">
               SEU CORPO ESTÁ SENDO HACKEADO
             </div>
           </div>

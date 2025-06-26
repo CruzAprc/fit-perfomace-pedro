@@ -93,33 +93,33 @@ const GamingLogin = () => {
     <div className="min-h-screen gaming-bg flex items-center justify-center relative">
       
 
-      {/* Main Gaming Container */}
-      <div className="max-w-md w-full mx-auto px-6 relative z-20">
-        <div className="gaming-card rounded-3xl p-8 glow-effect animate-slide-in-up">
+      {/* Main Gaming Container - Responsivo */}
+      <div className="max-w-sm sm:max-w-md w-full mx-auto px-4 sm:px-6 relative z-20">
+        <div className="gaming-card rounded-3xl p-4 sm:p-6 md:p-8 glow-effect animate-slide-in-up">
           
-          {/* Gaming Header */}
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
+          {/* Gaming Header - Responsivo */}
+          <div className="text-center mb-6 sm:mb-8">
+            <div className="flex justify-center mb-4 sm:mb-6">
               <div className="relative">
-                <ModernFitLogo size={140} variant="icon-only" />
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center animate-pulse-glow">
+                <ModernFitLogo size={120} variant="icon-only" className="sm:w-[140px] sm:h-[140px]" />
+                <div className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 bg-green-400 rounded-full flex items-center justify-center animate-pulse-glow">
                   <span className="text-xs font-bold text-black">●</span>
                 </div>
               </div>
             </div>
             
-            <p className="text-gray-300 font-medium mb-2">Acesse sua conta de jogador</p>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-300 font-medium mb-2 text-sm sm:text-base">Acesse sua conta de jogador</p>
+            <p className="text-gray-400 text-xs sm:text-sm">
               Evolua seu shape enquanto se diverte
             </p>
 
-            {/* XP Bar demonstrativo */}
-            <div className="mt-4 mb-6">
+            {/* XP Bar demonstrativo - Responsivo */}
+            <div className="mt-3 sm:mt-4 mb-4 sm:mb-6">
               <div className="flex justify-between text-xs text-gray-400 mb-1">
                 <span>Sistema Online</span>
                 <span>{xpValue}%</span>
               </div>
-              <div className="xp-bar h-2">
+              <div className="xp-bar h-1.5 sm:h-2">
                 <div 
                   className="xp-fill h-full"
                   style={{ width: `${xpValue}%` }}
@@ -128,12 +128,12 @@ const GamingLogin = () => {
             </div>
           </div>
 
-          {/* Gaming Form */}
-          <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Gaming Form - Responsivo */}
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             
-            {/* Email Input */}
+            {/* Email Input - Responsivo */}
             <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-3">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-300 mb-2 sm:mb-3">
                 Email do Jogador
               </label>
               <input 
@@ -147,16 +147,16 @@ const GamingLogin = () => {
                 disabled={isSubmitting}
               />
               {errors.email && (
-                <p className="text-red-400 text-sm mt-2 font-medium flex items-center gap-2">
-                  <span className="w-4 h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">!</span>
-                  {errors.email}
+                <p className="text-red-400 text-xs sm:text-sm mt-2 font-medium flex items-center gap-2">
+                  <span className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center flex-shrink-0">!</span>
+                  <span className="break-words">{errors.email}</span>
                 </p>
               )}
             </div>
 
-            {/* Password Input */}
+            {/* Password Input - Responsivo */}
             <div>
-              <label className="block text-sm font-semibold text-gray-300 mb-3">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-300 mb-2 sm:mb-3">
                 Código de Acesso
               </label>
               <input 
@@ -170,28 +170,28 @@ const GamingLogin = () => {
                 disabled={isSubmitting}
               />
               {errors.password && (
-                <p className="text-red-400 text-sm mt-2 font-medium flex items-center gap-2">
-                  <span className="w-4 h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center">!</span>
-                  {errors.password}
+                <p className="text-red-400 text-xs sm:text-sm mt-2 font-medium flex items-center gap-2">
+                  <span className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-red-500 text-white text-xs flex items-center justify-center flex-shrink-0">!</span>
+                  <span className="break-words">{errors.password}</span>
                 </p>
               )}
             </div>
 
-            {/* Gaming Submit Button */}
+            {/* Gaming Submit Button - Responsivo */}
             <button 
               type="submit" 
-              className="w-full btn-gaming text-lg font-semibold py-4 flex items-center justify-center gap-3"
+              className="w-full btn-gaming text-base sm:text-lg font-semibold py-3 sm:py-4 flex items-center justify-center gap-2 sm:gap-3"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
                 <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  <span>Conectando...</span>
+                  <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  <span className="text-sm sm:text-base">Conectando...</span>
                 </>
               ) : (
                 <>
-                  <span>Iniciar Sessão</span>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <span className="text-sm sm:text-base">Iniciar Sessão</span>
+                  <svg width="16" height="16" className="sm:w-5 sm:h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14 7L19 12L14 17M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </>
@@ -199,31 +199,31 @@ const GamingLogin = () => {
             </button>
           </form>
 
-          {/* Gaming Stats */}
-          <div className="mt-8 p-4 bg-gray-900 rounded-2xl border border-blue-500 border-opacity-30">
+          {/* Gaming Stats - Responsivo */}
+          <div className="mt-6 sm:mt-8 p-3 sm:p-4 bg-gray-900 rounded-2xl border border-blue-500 border-opacity-30">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-500 flex items-center justify-center">
                 <span className="text-white text-xs font-bold">G</span>
               </div>
-              <span className="text-sm font-semibold text-gray-300">Contas de Teste</span>
+              <span className="text-xs sm:text-sm font-semibold text-gray-300">Contas de Teste</span>
             </div>
             <div className="space-y-2 text-xs text-gray-400">
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                 <span className="font-medium">Jogador Iniciante:</span>
-                <code className="bg-gray-800 px-2 py-1 rounded text-green-400">novo@test.com</code>
+                <code className="bg-gray-800 px-2 py-1 rounded text-green-400 text-xs break-all">novo@test.com</code>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                 <span className="font-medium">Veterano Level 50:</span>
-                <code className="bg-gray-800 px-2 py-1 rounded text-blue-400">existente@test.com</code>
+                <code className="bg-gray-800 px-2 py-1 rounded text-blue-400 text-xs break-all">existente@test.com</code>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-1 sm:space-y-0">
                 <span className="font-medium">Código Universal:</span>
-                <code className="bg-gray-800 px-2 py-1 rounded text-yellow-400">123456</code>
+                <code className="bg-gray-800 px-2 py-1 rounded text-yellow-400 text-xs">123456</code>
               </div>
             </div>
             
-            {/* Gaming Stats */}
-            <div className="mt-4 pt-3 border-t border-gray-700">
+            {/* Gaming Stats - Responsivo */}
+            <div className="mt-3 sm:mt-4 pt-3 border-t border-gray-700">
               <div className="flex justify-between text-xs">
                 <span className="text-gray-500">Tentativas:</span>
                 <span className="text-blue-400 font-bold">{loginAttempts}</span>

@@ -37,96 +37,96 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="relative z-10 w-full max-w-lg mx-auto px-3">
+      <div className="relative z-10 w-full max-w-sm sm:max-w-lg lg:max-w-2xl mx-auto px-3 sm:px-4">
         {/* Header compacto */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <div className="relative">
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div className="relative flex-shrink-0">
               <ModernFitLogo size={40} variant="icon-only" />
               <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
             </div>
-            <div>
-              <h1 className="text-lg font-bold text-white">🎮 Gaming Dashboard</h1>
-              <p className="text-xs text-gray-300">⚡ Bem-vinda, {user.email || 'Usuário'}!</p>
+            <div className="min-w-0 flex-1">
+              <h1 className="text-base sm:text-lg font-bold text-white truncate">🎮 Gaming Dashboard</h1>
+              <p className="text-xs text-gray-300 truncate">⚡ Bem-vinda, {user.email || 'Usuário'}!</p>
             </div>
           </div>
           <button
             onClick={logout}
-            className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium text-xs"
+            className="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium text-xs flex-shrink-0"
           >
             🚪 Sair
           </button>
         </div>
 
-        {/* Container principal compacto */}
-        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-blue-400/30 p-3 shadow-xl relative overflow-hidden">
+        {/* Container principal responsivo */}
+        <div className="bg-black/40 backdrop-blur-sm rounded-xl border border-blue-400/30 p-3 sm:p-4 shadow-xl relative overflow-hidden">
           {/* Cantos neon */}
           <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-blue-400"></div>
           <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-blue-400"></div>
           <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-400"></div>
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-blue-400"></div>
 
-          {/* Gaming Cards compactos */}
-          <div className="grid grid-cols-3 gap-2 mb-4">
-            <div className="bg-gray-900/50 border border-blue-500/30 rounded-lg p-2 text-center relative overflow-hidden">
-              <div className="text-lg mb-1">⚔️</div>
-              <h3 className="font-bold text-white text-xs">Missões</h3>
-              <p className="text-gray-400 text-xs">Treinos ativos</p>
-              <div className="mt-1 bg-gray-800/50 rounded-full h-1 overflow-hidden">
+          {/* Gaming Cards responsivos */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mb-4">
+            <div className="bg-gray-900/50 border border-blue-500/30 rounded-lg p-3 sm:p-2 text-center relative overflow-hidden">
+              <div className="text-xl sm:text-lg mb-1">⚔️</div>
+              <h3 className="font-bold text-white text-sm sm:text-xs">Missões</h3>
+              <p className="text-gray-400 text-sm sm:text-xs">Treinos ativos</p>
+              <div className="mt-2 sm:mt-1 bg-gray-800/50 rounded-full h-1.5 sm:h-1 overflow-hidden">
                 <div className="bg-gradient-to-r from-blue-400 to-blue-500 h-full rounded-full" style={{ width: '75%' }}></div>
               </div>
             </div>
             
-            <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-2 text-center relative overflow-hidden">
-              <div className="text-lg mb-1">📈</div>
-              <h3 className="font-bold text-white text-xs">XP & Level</h3>
-              <p className="text-gray-400 text-xs">Progresso geral</p>
-              <div className="mt-1 text-green-400 font-bold text-xs">Level 42</div>
+            <div className="bg-gray-900/50 border border-green-400/30 rounded-lg p-3 sm:p-2 text-center relative overflow-hidden">
+              <div className="text-xl sm:text-lg mb-1">📈</div>
+              <h3 className="font-bold text-white text-sm sm:text-xs">XP & Level</h3>
+              <p className="text-gray-400 text-sm sm:text-xs">Progresso geral</p>
+              <div className="mt-2 sm:mt-1 text-green-400 font-bold text-sm sm:text-xs">Level 42</div>
             </div>
             
-            <div className="bg-gray-900/50 border border-yellow-400/30 rounded-lg p-2 text-center relative overflow-hidden">
-              <div className="text-lg mb-1">🏆</div>
-              <h3 className="font-bold text-white text-xs">Conquistas</h3>
-              <p className="text-gray-400 text-xs">Badges desbloqueadas</p>
-              <div className="mt-1 text-yellow-400 font-bold text-xs">12/25</div>
+            <div className="bg-gray-900/50 border border-yellow-400/30 rounded-lg p-3 sm:p-2 text-center relative overflow-hidden">
+              <div className="text-xl sm:text-lg mb-1">🏆</div>
+              <h3 className="font-bold text-white text-sm sm:text-xs">Conquistas</h3>
+              <p className="text-gray-400 text-sm sm:text-xs">Badges desbloqueadas</p>
+              <div className="mt-2 sm:mt-1 text-yellow-400 font-bold text-sm sm:text-xs">12/25</div>
             </div>
           </div>
 
-          {/* Gaming Status compacto */}
-          <div className="bg-gray-900/50 border border-blue-500/30 rounded-lg p-3">
-            <h2 className="text-sm font-bold text-white mb-2 flex items-center gap-1">
+          {/* Gaming Status responsivo */}
+          <div className="bg-gray-900/50 border border-blue-500/30 rounded-lg p-3 sm:p-4">
+            <h2 className="text-sm sm:text-base font-bold text-white mb-3 sm:mb-2 flex items-center gap-1">
               ⚡ Sistema Gaming Online!
             </h2>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between items-center">
+            <div className="space-y-3 sm:space-y-2 text-xs sm:text-sm">
+              <div className="flex justify-between items-center flex-wrap gap-1">
                 <span className="text-gray-400">🔗 Status da Conexão:</span>
                 <span className="text-green-400 font-bold flex items-center gap-1">
                   ● Online
                 </span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center flex-wrap gap-1">
                 <span className="text-gray-400">🎯 Tutorial:</span>
                 <span className={`font-bold ${user.hasCompletedOnboarding ? 'text-green-400' : 'text-yellow-400'}`}>
                   {user.hasCompletedOnboarding ? '✅ Concluído' : '⏳ Pendente'}
                 </span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center flex-wrap gap-1">
                 <span className="text-gray-400">🎮 Modo Gaming:</span>
                 <span className="text-blue-400 font-bold">Ativado</span>
               </div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center flex-wrap gap-1">
                 <span className="text-gray-400">🚀 Redirecionamento:</span>
                 <span className="text-green-400 font-bold">Funcionando</span>
               </div>
             </div>
 
-            {/* Gaming XP Bar compacto */}
-            <div className="mt-3">
-              <div className="flex justify-between text-xs text-gray-400 mb-1">
+            {/* Gaming XP Bar responsivo */}
+            <div className="mt-4 sm:mt-3">
+              <div className="flex justify-between text-xs sm:text-sm text-gray-400 mb-2 sm:mb-1">
                 <span>💫 XP Sessão Atual</span>
                 <span>850/1000 XP</span>
               </div>
-              <div className="bg-gray-800/50 rounded-full h-2 overflow-hidden border border-gray-600/30">
+              <div className="bg-gray-800/50 rounded-full h-2.5 sm:h-2 overflow-hidden border border-gray-600/30">
                 <div className="bg-gradient-to-r from-blue-400 to-blue-500 h-full rounded-full transition-all duration-500" style={{ width: '85%' }}></div>
               </div>
             </div>
