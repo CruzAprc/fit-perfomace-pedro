@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ModernFitLogo } from './ModernFitLogo';
-import BasicSliderTest from './BasicSliderTest';
 
 const GamingLogin = () => {
   const navigate = useNavigate();
@@ -231,9 +230,6 @@ const GamingLogin = () => {
               </div>
             </div>
           </div>
-
-          {/* TESTE BÁSICO DO SLIDER */}
-          <BasicSliderTest />
 
           {/* Footer Gaming */}
           <div className="mt-8 text-center">

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Star, Target, Clock, Zap, Heart, Brain, Utensils, DollarSign, AlertCircle, CheckCircle2, Crown, Users } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
-import SimpleSlider from './SimpleSlider';
 
 interface Option {
   id: number;
@@ -171,39 +170,6 @@ const NutritionQuizGame = () => {
       ]
     },
     {
-      id: 8,
-      category: "NÍVEL DE ATIVIDADE",
-      icon: Zap,
-      title: "💪 INTENSIDADE DE TREINO",
-      subtitle: femaleProfile ? "Qual seu nível de atividade física?" : "Qual seu nível de atividade física?",
-      description: femaleProfile ? "Seu gasto energético determina suas necessidades nutricionais" : "Seu gasto energético determina suas necessidades nutricionais",
-      type: "single",
-      timeBonus: true,
-      options: [
-        { id: 1, text: "Sedentário - trabalho mesa", emoji: "💺", points: 8, color: "from-gray-500 to-slate-500" },
-        { id: 2, text: "Leve - 1-2x por semana", emoji: "🚶", points: 10, color: "from-blue-400 to-blue-500" },
-        { id: 3, text: "Moderado - 3-4x por semana", emoji: "🏃", points: 12, color: "from-green-500 to-emerald-500" },
-        { id: 4, text: "Intenso - 5-6x por semana", emoji: "🏋️", points: 15, color: "from-orange-500 to-red-500" },
-        { id: 5, text: "Elite - treino diário", emoji: "🥇", points: 20, color: "from-yellow-500 to-amber-500" }
-      ]
-    },
-    {
-      id: 9,
-      category: "TIMING NUTRICIONAL",
-      icon: Clock,
-      title: "⏰ FREQUÊNCIA DE REFEIÇÕES",
-      subtitle: "Quantas refeições por dia você faz?",
-      description: "Seu timing alimentar deve otimizar seu lifestyle",
-      type: "single",
-      timeBonus: true,
-      options: [
-        { id: 1, text: "3 refeições - clássico", emoji: "🍽️", points: 10, color: "from-blue-500 to-indigo-500" },
-        { id: 2, text: "4 refeições - equilibrado", emoji: "🥗", points: 12, color: "from-green-500 to-emerald-500" },
-        { id: 3, text: "5 refeições - fracionado", emoji: "🍎", points: 14, color: "from-orange-500 to-red-500" },
-        { id: 4, text: "6+ refeições - performance", emoji: "⚡", points: 15, color: "from-purple-500 to-pink-500" }
-      ]
-    },
-    {
       id: 10,
       category: "ARSENAL",
       icon: Heart,
@@ -221,43 +187,6 @@ const NutritionQuizGame = () => {
         { id: 5, text: "BCAA", emoji: "⚡", points: 8, color: "from-purple-500 to-indigo-500" },
         { id: 6, text: "Cafeína/Pré-treino", emoji: "☕", points: 6, color: "from-amber-500 to-orange-500" },
         { id: 7, text: "Arsenal vazio", emoji: "🚫", points: 5, color: "from-gray-500 to-slate-500" }
-      ]
-    },
-    {
-      id: 11,
-      category: "TIMING PERFEITO",
-      icon: Clock,
-      title: "🕐 JANELAS ALIMENTARES",
-      subtitle: "Quando você faz suas principais refeições?",
-      description: "O timing correto pode turbinar seu metabolismo",
-      type: "multiple",
-      maxSelections: 3,
-      timeBonus: true,
-      options: [
-        { id: 1, text: "Manhã cedo (6h-9h)", emoji: "🌅", points: 8, color: "from-yellow-400 to-orange-400" },
-        { id: 2, text: "Meio manhã (9h-12h)", emoji: "☀️", points: 8, color: "from-orange-400 to-yellow-500" },
-        { id: 3, text: "Almoço (12h-14h)", emoji: "🌞", points: 10, color: "from-blue-500 to-cyan-500" },
-        { id: 4, text: "Tarde (14h-18h)", emoji: "🌤️", points: 8, color: "from-green-500 to-blue-500" },
-        { id: 5, text: "Noite (18h-21h)", emoji: "🌆", points: 8, color: "from-purple-500 to-indigo-500" },
-        { id: 6, text: "Horários flexíveis", emoji: "🔄", points: 6, color: "from-gray-500 to-slate-500" }
-      ]
-    },
-    {
-      id: 12,
-      category: "INVESTIMENTO",
-      icon: DollarSign,
-      title: "💰 BUDGET MENSAL",
-      subtitle: "Quanto você investe em alimentação?",
-      description: "Vamos maximizar seus resultados dentro do seu orçamento",
-      type: "single",
-      timeBonus: true,
-      options: [
-        { id: 1, text: "Até R$ 300 - Econômico", emoji: "💵", points: 8, color: "from-green-400 to-emerald-400" },
-        { id: 2, text: "R$ 300-500 - Básico", emoji: "💶", points: 10, color: "from-blue-400 to-blue-500" },
-        { id: 3, text: "R$ 500-800 - Confortável", emoji: "💷", points: 12, color: "from-purple-400 to-purple-500" },
-        { id: 4, text: "R$ 800-1200 - Premium", emoji: "💴", points: 14, color: "from-orange-400 to-red-500" },
-        { id: 5, text: "R$ 1200+ - VIP", emoji: "💸", points: 16, color: "from-yellow-400 to-amber-500" },
-        { id: 6, text: "Sem limites - Elite", emoji: "👑", points: 20, color: "from-yellow-500 to-yellow-600" }
       ]
     },
     {
@@ -284,33 +213,6 @@ const NutritionQuizGame = () => {
           { id: 4, text: "Energia e disposição", emoji: "⚡", points: 12, color: "from-blue-500 to-cyan-500" },
           { id: 5, text: "Autoestima e confiança", emoji: "👑", points: 14, color: "from-purple-500 to-indigo-500" },
           { id: 6, text: "Exemplo para família", emoji: "❤️", points: 16, color: "from-red-500 to-pink-500" }
-        ])
-      ]
-    },
-    {
-      id: 14,
-      category: "BOSS FINAL",
-      icon: Crown,
-      title: "👑 MAIOR OBSTÁCULO",
-      subtitle: femaleProfile ? "Qual seu maior desafio com a alimentação?" : "Qual seu maior desafio alimentar?",
-      description: femaleProfile ? "Identificar obstáculos é o primeiro passo para superá-los" : "Identificar obstáculos é o primeiro passo para superá-los",
-      type: "single",
-      timeBonus: true,
-      options: [
-        ...(femaleProfile ? [
-          { id: 1, text: "Falta de tempo", emoji: "⏰", points: 12, color: "from-red-500 to-orange-500" },
-          { id: 2, text: "Ansiedade/compulsão", emoji: "😰", points: 15, color: "from-purple-500 to-pink-500" },
-          { id: 3, text: "Falta de conhecimento", emoji: "📚", points: 10, color: "from-blue-500 to-cyan-500" },
-          { id: 4, text: "Orçamento limitado", emoji: "💸", points: 12, color: "from-yellow-500 to-amber-500" },
-          { id: 5, text: "Pressão social/família", emoji: "👥", points: 14, color: "from-green-500 to-emerald-500" },
-          { id: 6, text: "Falta de motivação", emoji: "😴", points: 16, color: "from-gray-500 to-slate-500" }
-        ] : [
-          { id: 1, text: "Falta de tempo", emoji: "⏰", points: 12, color: "from-red-500 to-orange-500" },
-          { id: 2, text: "Compulsão/ansiedade", emoji: "😰", points: 15, color: "from-purple-500 to-indigo-500" },
-          { id: 3, text: "Falta de conhecimento", emoji: "📚", points: 10, color: "from-blue-500 to-cyan-500" },
-          { id: 4, text: "Orçamento limitado", emoji: "💸", points: 12, color: "from-yellow-500 to-amber-500" },
-          { id: 5, text: "Pressão social", emoji: "👥", points: 14, color: "from-green-500 to-emerald-500" },
-          { id: 6, text: "Falta de motivação", emoji: "😴", points: 16, color: "from-gray-500 to-slate-500" }
         ])
       ]
     }
@@ -560,28 +462,159 @@ const NutritionQuizGame = () => {
 
           {/* Content Area - Scrollable */}
           <div className="flex-1 overflow-y-auto min-h-0 mb-3">
-            {/* Pickers gaming */}
+            {/* Gaming Sliders com visual mais avançado */}
             {currentQ.type === 'weight_picker' || currentQ.type === 'height_picker' || currentQ.type === 'age_picker' ? (
-              <div className="mb-4">
-                <SimpleSlider
-                  min={currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
-                       currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
-                       (currentQ.minAge || 13)}
-                  max={currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
-                       currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
-                       (currentQ.maxAge || 100)}
-                  value={pickerValue}
-                  onChange={(newValue) => {
-                    setPickerValue(newValue);
-                    setSelectedAnswer({ value: newValue, points: 10 });
-                  }}
-                  unit={currentQ.type === 'weight_picker' ? 'kg' : 
-                        currentQ.type === 'height_picker' ? 'cm' : 
-                        'anos'}
-                  label={currentQ.type === 'weight_picker' ? 'PESO ATUAL' : 
-                         currentQ.type === 'height_picker' ? 'ALTURA' : 
-                         'IDADE'}
-                />
+              <div className="mb-4 bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border-2 border-cyan-400/30 relative overflow-hidden shadow-2xl">
+                {/* Cantos gaming neon */}
+                <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-cyan-400"></div>
+                <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-cyan-400"></div>
+                <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-cyan-400"></div>
+                <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-cyan-400"></div>
+
+                {/* Background pattern gaming */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-cyan-500/20 via-transparent to-blue-500/20"></div>
+                  <div className="absolute top-4 left-4 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                  <div className="absolute top-6 right-8 w-1 h-1 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                  <div className="absolute bottom-8 left-6 w-1.5 h-1.5 bg-cyan-300 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+                </div>
+
+                {/* Header gaming */}
+                <div className="text-center mb-8 relative z-10">
+                  <div className={`text-xs uppercase tracking-widest font-bold mb-3 ${femaleProfile ? 'text-pink-300' : 'text-cyan-300'} font-mono`}>
+                    {currentQ.type === 'weight_picker' ? '⚖️ SCAN PESO CORPORAL' : 
+                     currentQ.type === 'height_picker' ? '📏 SCAN ALTURA FÍSICA' : 
+                     '🎂 ANÁLISE TEMPORAL'}
+                  </div>
+                  
+                  {/* Display valor principal com efeito neon */}
+                  <div className="relative">
+                    <div className={`text-6xl font-black text-white mb-2 font-mono tracking-wider filter drop-shadow-lg ${
+                      femaleProfile ? 'text-pink-400' : 'text-cyan-400'
+                    }`} style={{
+                      textShadow: `0 0 20px ${femaleProfile ? '#ec4899' : '#06b6d4'}, 0 0 40px ${femaleProfile ? '#ec489950' : '#06b6d450'}`
+                    }}>
+                      {pickerValue}
+                    </div>
+                    <div className={`text-lg font-bold ${femaleProfile ? 'text-pink-300' : 'text-cyan-300'} font-mono tracking-wide`}>
+                      {currentQ.type === 'weight_picker' ? 'QUILOS' : 
+                       currentQ.type === 'height_picker' ? 'CENTÍMETROS' : 
+                       'ANOS'}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Slider gaming customizado */}
+                <div className="relative z-10">
+                  {/* Background track gaming */}
+                  <div className="relative h-4 mb-6">
+                    <div className="absolute inset-0 bg-gray-800/50 rounded-full border border-gray-600/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-700/30 via-gray-600/30 to-gray-700/30 rounded-full"></div>
+                    
+                    {/* Progress track com gradiente gaming */}
+                    <div 
+                      className={`absolute top-0 left-0 h-4 rounded-full border-2 transition-all duration-300 ${
+                        femaleProfile 
+                          ? 'bg-gradient-to-r from-pink-500 via-pink-400 to-rose-400 border-pink-300/50 shadow-lg shadow-pink-500/30' 
+                          : 'bg-gradient-to-r from-cyan-500 via-cyan-400 to-blue-400 border-cyan-300/50 shadow-lg shadow-cyan-500/30'
+                      }`}
+                      style={{ 
+                        width: `${((pickerValue - (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
+                                 currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
+                                 (currentQ.minAge || 13))) / 
+                                ((currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
+                                  currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
+                                  (currentQ.maxAge || 100)) - 
+                                 (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
+                                  currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
+                                  (currentQ.minAge || 13)))) * 100}%`,
+                        boxShadow: `0 0 20px ${femaleProfile ? '#ec489950' : '#06b6d450'}`
+                      }}
+                    />
+
+                    {/* Slider input invisível por cima */}
+                    <input
+                      type="range"
+                      min={currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
+                           currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
+                           (currentQ.minAge || 13)}
+                      max={currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
+                           currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
+                           (currentQ.maxAge || 100)}
+                      value={pickerValue}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        const newValue = parseInt(e.target.value);
+                        setPickerValue(newValue);
+                        setSelectedAnswer({ value: newValue, points: 10 });
+                      }}
+                      className="absolute inset-0 w-full h-4 opacity-0 cursor-pointer z-10"
+                    />
+
+                    {/* Thumb customizado */}
+                    <div 
+                      className={`absolute top-1/2 w-8 h-8 rounded-full border-4 transition-all duration-300 transform -translate-y-1/2 pointer-events-none z-20 ${
+                        femaleProfile 
+                          ? 'bg-pink-400 border-pink-200 shadow-lg shadow-pink-500/50' 
+                          : 'bg-cyan-400 border-cyan-200 shadow-lg shadow-cyan-500/50'
+                      }`}
+                      style={{ 
+                        left: `calc(${((pickerValue - (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
+                                       currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
+                                       (currentQ.minAge || 13))) / 
+                                      ((currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
+                                        currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
+                                        (currentQ.maxAge || 100)) - 
+                                       (currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
+                                        currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
+                                        (currentQ.minAge || 13)))) * 100}% - 16px)`,
+                        boxShadow: `0 0 15px ${femaleProfile ? '#ec4899' : '#06b6d4'}`
+                      }}
+                    >
+                      <div className={`w-2 h-2 rounded-full ${femaleProfile ? 'bg-pink-200' : 'bg-cyan-200'} absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}></div>
+                    </div>
+                  </div>
+
+                  {/* Labels gaming nos extremos */}
+                  <div className="flex justify-between items-center text-sm font-mono">
+                    <div className="text-center">
+                      <div className={`px-3 py-1 rounded-lg border ${femaleProfile ? 'bg-pink-500/20 border-pink-400/30 text-pink-300' : 'bg-cyan-500/20 border-cyan-400/30 text-cyan-300'}`}>
+                        MIN: {currentQ.type === 'weight_picker' ? (currentQ.minWeight || 30) : 
+                              currentQ.type === 'height_picker' ? (currentQ.minHeight || 120) : 
+                              (currentQ.minAge || 13)}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className={`px-3 py-1 rounded-lg border ${femaleProfile ? 'bg-pink-500/20 border-pink-400/30 text-pink-300' : 'bg-cyan-500/20 border-cyan-400/30 text-cyan-300'}`}>
+                        MAX: {currentQ.type === 'weight_picker' ? (currentQ.maxWeight || 200) : 
+                              currentQ.type === 'height_picker' ? (currentQ.maxHeight || 220) : 
+                              (currentQ.maxAge || 100)}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status bar gaming */}
+                  <div className="mt-6 p-4 bg-gray-800/50 rounded-lg border border-gray-600/30">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-gray-400">STATUS DO SCAN:</span>
+                      <span className={`font-bold ${femaleProfile ? 'text-pink-400' : 'text-cyan-400'}`}>
+                        {currentQ.type === 'weight_picker' ? '⚖️ CALIBRANDO MASSA' : 
+                         currentQ.type === 'height_picker' ? '📏 MEDINDO ALTURA' : 
+                         '🎂 ANALISANDO IDADE'}
+                      </span>
+                    </div>
+                    <div className="mt-2 flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <div 
+                          key={i} 
+                          className={`h-1 w-full rounded-full transition-all duration-300 ${
+                            i < 4 ? (femaleProfile ? 'bg-pink-400' : 'bg-cyan-400') : 'bg-gray-600'
+                          }`}
+                          style={{ animationDelay: `${i * 0.2}s` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-3">
