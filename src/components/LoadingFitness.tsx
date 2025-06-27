@@ -105,12 +105,6 @@ const LoadingFitness = () => {
   useEffect(() => {
     if (showStartButton) {
       const messages = [
-        { text: 'Mapeando zona de conforto atual...', color: 'yellow', delay: 90 },
-        { text: 'Analisando nível de auto-enganação...', color: 'yellow', delay: 85 },
-        { text: 'ATENÇÃO: Analisando padrão de mediocridade', color: 'red', delay: 100 },
-        { text: 'BLOQUEIO: Mindset limitante ativo', color: 'red', delay: 95 },
-        { text: 'Quebrando barreiras mentais...', color: 'yellow', delay: 80 },
-        { text: 'Instalando mentalidade de campeão...', color: 'yellow', delay: 85 },
         { text: 'PERGUNTA: Você vai continuar sendo comum?', color: 'red', delay: 90 },
         { text: 'FitPerformance está desafiando você...', color: 'blue', delay: 95 }
       ];
@@ -128,23 +122,23 @@ const LoadingFitness = () => {
             setTimeout(typeMessage, currentMessage.delay);
           } else {
             // Pausa no final da mensagem
-            let pauseTime = 800;
-            if (currentMessage.color === 'red') pauseTime = 1200; // Pausa maior nos erros
-            if (messageIndex === messages.length - 1) pauseTime = 1500; // Pausa maior no final
+            let pauseTime = 600;
+            if (currentMessage.color === 'red') pauseTime = 800; // Pausa maior nos erros
+            if (messageIndex === messages.length - 1) pauseTime = 800; // Pausa menor no final
             
             setTimeout(() => {
               if (messageIndex < messages.length - 1) {
                 messageIndex++;
                 charIndex = 0;
                 setTypingText('');
-                setTimeout(typeMessage, 200);
+                setTimeout(typeMessage, 150);
               }
             }, pauseTime);
           }
         }
       };
       
-      setTimeout(typeMessage, 800);
+      setTimeout(typeMessage, 400);
     }
   }, [showStartButton]);
 

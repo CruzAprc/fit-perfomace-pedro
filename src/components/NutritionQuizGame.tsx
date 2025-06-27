@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronRight, ChevronLeft, Target, Clock, Heart, Brain, Utensils, AlertCircle, CheckCircle2, Users } from 'lucide-react';
 import { ModernFitLogo } from './ModernFitLogo';
+import FitCoin from './FitCoin';
 
 interface Option {
   id: number;
@@ -66,8 +67,7 @@ const NutritionQuizGame = () => {
       timeBonus: false,
       options: [
         { id: 1, text: "Masculino", emoji: "♂️", points: 10, color: "from-blue-500 to-cyan-500" },
-        { id: 2, text: "Feminino", emoji: "♀️", points: 10, color: "from-pink-500 to-rose-500" },
-        { id: 3, text: "Outro", emoji: "👤", points: 10, color: "from-purple-500 to-indigo-500" }
+        { id: 2, text: "Feminino", emoji: "♀️", points: 10, color: "from-pink-500 to-rose-500" }
       ]
     },
     {
@@ -437,6 +437,18 @@ const NutritionQuizGame = () => {
           {/* Logo e progresso responsivos */}
           <div className="flex flex-col sm:flex-row items-center justify-between mb-2 space-y-1 sm:space-y-0">
             <ModernFitLogo size={40} variant="icon-only" />
+            
+            {/* Score e Streak */}
+            <div className="flex items-center space-x-3">
+              <FitCoin amount={score} size="md" />
+              {streak > 1 && (
+                <div className="flex items-center space-x-1 bg-orange-500/20 px-2 py-1 rounded-lg border border-orange-400/30">
+                  <span className="text-orange-400 text-xs">🔥</span>
+                  <span className="text-orange-400 text-xs font-bold">{streak}x</span>
+                </div>
+              )}
+            </div>
+            
             <div className="text-center sm:text-right">
               <div className="text-xs text-gray-400">Questão {currentQuestion + 1} de {questions.length}</div>
               <div className="text-base sm:text-lg font-bold text-white">{Math.round(((currentQuestion + 1) / questions.length) * 100)}%</div>

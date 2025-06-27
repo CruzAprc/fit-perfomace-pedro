@@ -205,25 +205,7 @@ const Onboarding = () => {
                 HACKEAR MEU CORPO
               </span>
             </button>
-            
-            <div className="flex items-center justify-center mt-4 text-xs sm:text-sm text-gray-400">
-              <div className="power-core w-3 h-3 rounded-full mr-2"></div>
-              <span className="font-mono font-bold text-center">SISTEMA CARREGADO • PRONTO PARA HACK</span>
-              <div className="power-core w-3 h-3 rounded-full ml-2" style={{animationDelay: '0.5s'}}></div>
-            </div>
           </div>
-
-          {/* Efeito de Digitação - Responsivo */}
-          <div className="text-center mb-6">
-            <div className="text-red-500 font-cyber text-lg sm:text-xl font-bold typing-effect digital-glitch">
-              SEU CORPO ESTÁ SENDO HACKEADO
-            </div>
-          </div>
-
-          {/* Footer Info - Mais Compacto */}
-          <p className="text-xs text-gray-500 text-center font-mono">
-            [PROTOCOLO_ÚNICO] Acesso concedido apenas uma vez por usuário
-          </p>
         </div>
       </div>
     </div>
